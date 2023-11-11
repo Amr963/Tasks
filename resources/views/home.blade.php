@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@section('title','home')
+@section('title','Product')
 
 @section('content')
     <div class="card">
