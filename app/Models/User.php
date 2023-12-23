@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+// مشان تخلي التطبيق يرسل ايميل تحقق عندما يتم تسجيل مستخدم جديد + شوف الراوتات الخاصة فيا
+// Doc : Email Verification;
+// class User extends Authenticatable implements MustVerifyEmail
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -42,4 +45,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // relations
+    public function profilies()
+    {
+        return $this->hasOne(Profile::class);
+    }
 }

@@ -2,10 +2,13 @@
 
 namespace App\Providers;
 
+use App\Models\Product;
+use App\Events\ProductEvent;
+use App\Listeners\ProductListener;
+use App\Observers\ProductObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -14,9 +17,13 @@ class EventServiceProvider extends ServiceProvider
      *
      * @var array<class-string, array<int, class-string>>
      */
+
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        ProductEvent::class => [
+            ProductListener::class,
         ],
     ];
 
@@ -25,7 +32,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Product::observe(ProductObserver::class);
     }
 
     /**

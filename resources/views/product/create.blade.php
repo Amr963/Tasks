@@ -24,27 +24,31 @@
                         </div>
                     @endif
                 </div>
-            <form action="{{ route('product.store') }}" method="post">
-                @csrf
-                <div class="mb-3">
-                    <label class="form-label">Name</label>
-                    <input type="text" class="form-control" name="name" value="{{ old('name') }}">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">serial Number</label>
-                    <input type="text" class="form-control" name="serial_number" value="{{ old('serial_number') }}">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">price</label>
-                    <input type="text" class="form-control" name="price" value="{{ old('price') }}">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Description</label>
-                    <textarea name="description" rows="7" cols="30" class="form-control">{{ old('description') }}</textarea>
-                </div>
-                <button type="submit" name="create" class="btn btn-primary">Add</button>
-            </form>
-        </div>
+                <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">serial Number</label>
+                        <input type="text" class="form-control" name="serial_number" value="{{ old('serial_number') }}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">price</label>
+                        <input type="text" class="form-control" name="price" value="{{ old('price') }}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Add Image</label>
+                        <input type="file" class="form-control" name="image" value="{{ old('image') }}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <textarea name="description" rows="7" cols="30" class="form-control">{{ old('description') }}</textarea>
+                    </div>
+                    <button type="submit" name="create" class="btn btn-primary">Add</button>
+                </form>
+            </div>
 
-    </div>
-@endsection
+        </div>
+    @endsection
